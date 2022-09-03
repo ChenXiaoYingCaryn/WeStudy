@@ -1,0 +1,12 @@
+server:
+  port: 8090
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://159.75.110.59:3306/westudy?characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC
+    username: westudy
+    password: 123123
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 350MB

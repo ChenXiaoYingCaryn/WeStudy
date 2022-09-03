@@ -1,0 +1,13 @@
+com\haizhi\westudy\dao\VideoDao.class
+com\haizhi\westudy\pojo\dao\UserForDao.class
+com\haizhi\westudy\WeStudyApplication.class
+com\haizhi\westudy\config\SwaggerConfig.class
+com\haizhi\westudy\enums\UploadEnum.class
+com\haizhi\westudy\utils\JWTUtils.class
+com\haizhi\westudy\controller\UserController.class
+com\haizhi\westudy\service\impl\UserServiceImpl.class
+com\haizhi\westudy\config\CorsConfig.class
+com\haizhi\westudy\utils\ResultUtils.class
+com\haizhi\westudy\dao\UserDao.class
+com\haizhi\westudy\controller\UploadController.class
+com\haizhi\westudy\utils\UploadUtils.class
