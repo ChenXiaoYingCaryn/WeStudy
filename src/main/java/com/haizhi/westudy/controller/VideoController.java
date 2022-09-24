@@ -21,12 +21,12 @@ public class VideoController {
     VideoService videoService;
 
     @GetMapping("/queryVideoByUserId")
-    ResultUtils queryVideoByUserId(Integer userId){
+    ResultUtils queryVideoByUserId(@RequestParam Integer userId){
         return videoService.queryVideoByUserId(userId);
     }
 
     @GetMapping("/queryVideoByType")
-    ResultUtils queryVideoByType(String type){
+    ResultUtils queryVideoByType(@RequestParam String type){
         return videoService.queryVideoByType(type);
     }
 
@@ -36,7 +36,7 @@ public class VideoController {
     }
 
     @PostMapping("/deleteVideo")
-    ResultUtils deleteVideo(@RequestHeader String token, Integer id){
+    ResultUtils deleteVideo(@RequestHeader String token,@RequestParam Integer id){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
@@ -46,12 +46,12 @@ public class VideoController {
     }
 
     @GetMapping("/getVideoByVideoId")
-    ResultUtils getVideoByVideoId(Integer id){
+    ResultUtils getVideoByVideoId(@RequestParam Integer id){
         return videoService.getVideoByVideoId(id);
     }
 
     @PostMapping("/updateVideo")
-    ResultUtils updateVideo(@RequestHeader String token,  VideoReq video){
+    ResultUtils updateVideo(@RequestHeader String token, @RequestParam VideoReq video){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
@@ -62,7 +62,7 @@ public class VideoController {
 
 
     @PostMapping("/postVideo")
-    ResultUtils postVideo(@RequestHeader String token,  VideoReq video){
+    ResultUtils postVideo(@RequestHeader String token, @RequestParam VideoReq video){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){

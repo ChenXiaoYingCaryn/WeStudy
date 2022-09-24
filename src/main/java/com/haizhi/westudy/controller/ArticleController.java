@@ -21,28 +21,28 @@ public class ArticleController {
     ArticleService articleService;
 
     @GetMapping("/countUserArticle")
-    ResultUtils countUserArticle(Integer userId){
+    ResultUtils countUserArticle(@RequestParam Integer userId){
         return articleService.countUserArticle(userId);
     }
 
 
     @GetMapping("/queryArticleByUserId")
-    ResultUtils queryArticleByUserId(Integer userId){
+    ResultUtils queryArticleByUserId(@RequestParam Integer userId){
         return articleService.queryArticleByUserId(userId);
     }
 
     @GetMapping("/queryArticleByType")
-    ResultUtils queryArticleByType(String type){
+    ResultUtils queryArticleByType(@RequestParam String type){
         return articleService.queryArticleByType(type);
     }
 
     @GetMapping("/getArticleByArticleId")
-    ResultUtils getArticleByArticleId(Integer Id){
+    ResultUtils getArticleByArticleId(@RequestParam Integer Id){
         return articleService.getArticleByArticleId(Id);
     }
 
     @PostMapping("/deleteArticle")
-    ResultUtils deleteArticle(@RequestHeader String token, Integer id){
+    ResultUtils deleteArticle(@RequestHeader String token,@RequestParam Integer id){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
@@ -52,7 +52,7 @@ public class ArticleController {
     }
 
     @PostMapping("/updateArticle")
-    ResultUtils updateArticle(@RequestHeader String token, Article article){
+    ResultUtils updateArticle(@RequestHeader String token,@RequestParam Article article){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
@@ -67,7 +67,7 @@ public class ArticleController {
     }
 
     @PostMapping("/postArticle")
-    ResultUtils postArticle(@RequestHeader String token, Article article){
+    ResultUtils postArticle(@RequestHeader String token,@RequestParam Article article){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){

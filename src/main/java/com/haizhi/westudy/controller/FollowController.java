@@ -20,32 +20,32 @@ public class FollowController {
     FollowService followService;
 
     @GetMapping("/listFans")
-    ResultUtils listFans(Integer userId){
+    ResultUtils listFans(@RequestParam Integer userId){
         return followService.listFans(userId);
     }
 
     @GetMapping("/listFollow")
-    ResultUtils listFollow(Integer userId){
+    ResultUtils listFollow(@RequestParam Integer userId){
         return followService.listFollow(userId);
     }
 
     @GetMapping("/judgeWhetherFollow")
-    ResultUtils judgeWhetherFollow(Integer userId, Integer followerId){
+    ResultUtils judgeWhetherFollow(@RequestParam Integer userId, @RequestParam Integer followerId){
         return followService.judgeWhetherFollow(userId, followerId);
     }
 
     @GetMapping("/countFans")
-    ResultUtils countFans(Integer userId){
+    ResultUtils countFans(@RequestParam Integer userId){
         return followService.countFans(userId);
     }
 
     @GetMapping("/countFollow")
-    ResultUtils countFollow(Integer userId){
+    ResultUtils countFollow(@RequestParam Integer userId){
         return followService.countFollow(userId);
     }
 
     @PostMapping("/unFollow")
-    ResultUtils unFollow(@RequestHeader String token, Integer userId, Integer followId){
+    ResultUtils unFollow(@RequestHeader String token,@RequestParam Integer userId,@RequestParam Integer followId){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
