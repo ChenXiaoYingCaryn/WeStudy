@@ -12,7 +12,7 @@ spring:
       port: 27017
       database: westudy
       username: westudy
-      password: "123456"
+      password: "&123456&"
 
   servlet:
     multipart:
