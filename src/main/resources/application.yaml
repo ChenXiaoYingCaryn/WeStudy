@@ -1,5 +1,6 @@
 server:
   port: 8090
+
 spring:
   datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,9 +13,13 @@ spring:
       port: 27017
       database: westudy
       username: westudy
-      password: "&123456&"
-
+      password: haizhi2019
   servlet:
     multipart:
-      max-file-size: 300MB
-      max-request-size: 350MB
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    #开启mybatis驼峰式命名规则自动转换
+    map-underscore-to-camel-case: true

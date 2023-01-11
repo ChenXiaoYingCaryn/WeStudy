@@ -8,6 +8,8 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
+
 /**
  * @author xiaoying
  * @create 2022-06-04 上午 10:57
@@ -26,7 +28,7 @@ public class VideoController {
     }
 
     @GetMapping("/queryVideoByType")
-    ResultUtils queryVideoByType(@RequestParam String type){
+    ResultUtils queryVideoByType(@RequestParam Integer type){
         return videoService.queryVideoByType(type);
     }
 
@@ -51,7 +53,7 @@ public class VideoController {
     }
 
     @PostMapping("/updateVideo")
-    ResultUtils updateVideo(@RequestHeader String token, @RequestParam VideoReq video){
+    ResultUtils updateVideo(@RequestHeader String token, VideoReq video){
         try{
             JWTUtils.verify(token);
         }catch (Exception e){
@@ -62,7 +64,8 @@ public class VideoController {
 
 
     @PostMapping("/postVideo")
-    ResultUtils postVideo(@RequestHeader String token, @RequestParam VideoReq video){
+    ResultUtils postVideo(@RequestHeader String token, VideoReq video){
+        System.out.println("go into postVideo controller");
         try{
             JWTUtils.verify(token);
         }catch (Exception e){

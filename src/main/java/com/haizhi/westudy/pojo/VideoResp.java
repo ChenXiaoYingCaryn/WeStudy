@@ -1,111 +1,72 @@
 package com.haizhi.westudy.pojo;
 
-import javax.xml.crypto.Data;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 /**
  * @author xiaoying
  * @create 2022-06-03 下午 5:04
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class VideoResp {
 
+    /**
+     * id
+     */
     String Id;
+
+    /**
+     * 视频名称
+     */
     String Title;
-    String Url;
+
+    /**
+     * 视频
+     */
+    String Video;
+
+    /**
+     * 视频封面
+     */
     String Img;
-    String Type;
-    String userId;
-    Integer isDelete;
-    Data updateTime;
 
-    public VideoResp() {
-    }
+    /**
+     * 视频类型
+     */
+    Integer Type;
 
-    public VideoResp(String id, String title, String url, String img, String type, String userId, Integer isDelete, Data updateTime) {
-        Id = id;
-        Title = title;
-        Url = url;
-        Img = img;
-        Type = type;
-        this.userId = userId;
-        this.isDelete = isDelete;
-        this.updateTime = updateTime;
-    }
+    /**
+     * 用户id
+     */
+    String UserId;
 
-    public String getId() {
-        return Id;
-    }
+    /**
+     * 课程id
+     */
+    String CourseId;
 
-    public void setId(String id) {
-        Id = id;
-    }
+    /**
+     * 视频集数
+     */
+    String SectionId;
 
-    public String getTitle() {
-        return Title;
-    }
+    /**
+     * 是否删除
+     */
+    Integer IsDelete;
 
-    public void setTitle(String title) {
-        Title = title;
-    }
+    /**
+     * 更新时间
+     */
+    String UpdateTime;
 
-    public String getUrl() {
-        return Url;
-    }
+    /**
+     * 创建时间
+     */
+    String CreateTime;
 
-    public void setUrl(String url) {
-        Url = url;
-    }
-
-    public String getImg() {
-        return Img;
-    }
-
-    public void setImg(String img) {
-        Img = img;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public Data getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Data updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Video{" +
-                "Id='" + Id + '\'' +
-                ", Title='" + Title + '\'' +
-                ", Url='" + Url + '\'' +
-                ", Img='" + Img + '\'' +
-                ", Type='" + Type + '\'' +
-                ", userId='" + userId + '\'' +
-                ", isDeleted=" + isDelete +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 }

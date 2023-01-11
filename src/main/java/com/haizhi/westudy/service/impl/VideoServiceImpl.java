@@ -2,9 +2,9 @@ package com.haizhi.westudy.service.impl;
 
 import com.haizhi.westudy.dao.VideoDao;
 import com.haizhi.westudy.enums.UploadEnum;
+import com.haizhi.westudy.factory.VideoFactory;
 import com.haizhi.westudy.pojo.VideoReq;
 import com.haizhi.westudy.pojo.VideoResp;
-import com.haizhi.westudy.pojo.dao.VideoForDao;
 import com.haizhi.westudy.service.VideoService;
 import com.haizhi.westudy.utils.ResultUtils;
 import com.haizhi.westudy.utils.StudyTypeUtils;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +25,8 @@ public class VideoServiceImpl implements VideoService {
 
     @Autowired
     VideoDao videoDao;
+
+    VideoFactory videoFactory;
 
     @Override
     public ResultUtils countUserVideo(Integer userId) {
@@ -40,54 +41,35 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils queryVideoByUserId(Integer userId) {
-        List<VideoForDao> list;
+        List<VideoResp> list;
         try {
             list = videoDao.queryVideoByUserId(userId);
         }catch (Exception e){
             return ResultUtils.build(100, "query video fail", e.getMessage());
         }
-        List<VideoResp> nList = new ArrayList<>();
-        for(VideoForDao v : list){
-            String t = StudyTypeUtils.respMap.get(v.getType());
-            VideoResp nVideo = new VideoResp(v.getId(),v.getTitle(),v.getUrl(),v.getImg(),t,v.getUserId(),v.getIsDelete(),v.getUpdateTime());
-            nList.add(nVideo);
-        }
-        return ResultUtils.build(200, "query video success", nList);
+        return ResultUtils.build(200, "query video success", list);
     }
 
     @Override
-    public ResultUtils queryVideoByType(String type) {
-        Integer nType = StudyTypeUtils.reqMap.get(type);
-        List<VideoForDao> list;
+    public ResultUtils queryVideoByType(Integer type) {
+        List<VideoResp> list;
         try {
-            list = videoDao.queryVideoByType(nType);
+            list = videoDao.queryVideoByType(type);
         }catch (Exception e){
             return ResultUtils.build(100, "query video fail", e.getMessage());
         }
-        List<VideoResp> nList = new ArrayList<>();
-        for(VideoForDao v : list){
-            String t = StudyTypeUtils.respMap.get(v.getType());
-            VideoResp nVideo = new VideoResp(v.getId(),v.getTitle(),v.getUrl(),v.getImg(),t,v.getUserId(),v.getIsDelete(),v.getUpdateTime());
-            nList.add(nVideo);
-        }
-        return ResultUtils.build(200, "query video success", nList);
+        return ResultUtils.build(200, "query video success", list);
     }
 
     @Override
     public ResultUtils queryVideo() {
-        List<VideoForDao> list;
+        List<VideoResp> list;
         try {
             list = videoDao.queryVideo();
         }catch (Exception e){
             return ResultUtils.build(100, "query video fail", e.getMessage());
         }
-        List<VideoResp> nList = new ArrayList<>();
-        for(VideoForDao v : list){
-            String type = StudyTypeUtils.respMap.get(v.getType());
-            VideoResp nVideo = new VideoResp(v.getId(),v.getTitle(),v.getUrl(),v.getImg(),type,v.getUserId(),v.getIsDelete(),v.getUpdateTime());
-            nList.add(nVideo);
-        }
-        return ResultUtils.build(200, "query video success", nList);
+        return ResultUtils.build(200, "query video success", list);
     }
 
     @Override
@@ -102,7 +84,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils getVideoByVideoId(Integer id) {
-        VideoForDao video;
+        VideoResp video;
         try{
             video = videoDao.getVideoByVideoId(id);
         }catch (Exception e){
@@ -113,28 +95,30 @@ public class VideoServiceImpl implements VideoService {
             return ResultUtils.build(100, "This video does not exist", null);
         }
 
-        String type = StudyTypeUtils.respMap.get(video.getType());
-        VideoResp nVideo = new VideoResp(video.getId(),video.getTitle(),video.getUrl(),video.getImg(),type,video.getUserId(),video.getIsDelete(),video.getUpdateTime());
-        return ResultUtils.build(200, "get video success", nVideo);
+        return ResultUtils.build(200, "get video success", video);
     }
 
     @Override
     @Transactional
-    public ResultUtils updateVideo(VideoReq video) {
-        ResultUtils url = null, img = null;
-        Integer type = null;
+    public ResultUtils updateVideo(VideoReq req){
+        ResultUtils video = new ResultUtils();
+        ResultUtils img = new ResultUtils();
 
-        if(video.getVideo() != null){
-            url = UploadUtils.uploadFile(video.getVideo(), UploadEnum.video);
+        if(req.getVideo() != null){
+            video = UploadUtils.uploadFile(req.getVideo(), UploadEnum.video);
+            if(video.getStatus().equals("100")) {
+                return video;
+            }
         }
-        if(video.getImg() != null){
-            img = UploadUtils.uploadFile(video.getImg(), UploadEnum.image);
+        if(req.getImg() != null){
+            img = UploadUtils.uploadFile(req.getImg(), UploadEnum.image);
+            if(img.getStatus().equals("100")) {
+                return img;
+            }
         }
-        if(video.getType() != null){
-            type = StudyTypeUtils.reqMap.get(video.getType());
-        }
-        VideoForDao nVideo = new VideoForDao(video.getTitle(), (String)url.getData(), (String)img.getData(), type, video.getUserId());
 
+
+        VideoResp nVideo = VideoFactory.VideoRepToVideoResp(req, video, img);
         try{
             videoDao.updateVideo(nVideo);
         }catch (Exception e){
@@ -145,19 +129,16 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public ResultUtils postVideo(VideoReq video) {
+    public ResultUtils postVideo(VideoReq req) {
 
-        if(video.getVideo() == null || video.getImg() == null){
+        if(req.getVideo() == null || req.getImg() == null){
             return ResultUtils.build(100,"you must upload video and image file", null);
         }
 
+        ResultUtils videoUrl = UploadUtils.uploadFile(req.getVideo(), UploadEnum.video);
+        ResultUtils imgUrl = UploadUtils.uploadFile(req.getImg(), UploadEnum.image);
 
-        ResultUtils url = UploadUtils.uploadFile(video.getVideo(), UploadEnum.video);
-        ResultUtils img = UploadUtils.uploadFile(video.getImg(), UploadEnum.image);
-
-        Integer type = StudyTypeUtils.reqMap.get(video.getType());
-
-        VideoForDao nVideo = new VideoForDao(video.getTitle(), (String) url.getData(), (String) img.getData(),type, video.getUserId());
+        VideoResp nVideo = videoFactory.VideoRepToVideoResp(req, videoUrl, imgUrl);
         try{
             videoDao.postVideo(nVideo);
         }catch (Exception e){

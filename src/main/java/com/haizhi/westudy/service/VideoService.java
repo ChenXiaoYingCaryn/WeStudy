@@ -13,7 +13,7 @@ public interface VideoService {
 
     ResultUtils queryVideoByUserId(Integer userId);
 
-    ResultUtils queryVideoByType(String type);
+    ResultUtils queryVideoByType(Integer type);
 
     ResultUtils queryVideo();
 
