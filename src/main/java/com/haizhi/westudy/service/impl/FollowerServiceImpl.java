@@ -1,7 +1,7 @@
 package com.haizhi.westudy.service.impl;
 
 import com.haizhi.westudy.dao.FollowDao;
-import com.haizhi.westudy.pojo.UserResp;
+import com.haizhi.westudy.pojo.vo.UserVo;
 import com.haizhi.westudy.pojo.dao.UserForDao;
 import com.haizhi.westudy.service.FollowService;
 import com.haizhi.westudy.utils.ResultUtils;
@@ -30,10 +30,10 @@ public class FollowerServiceImpl implements FollowService {
         }catch (Exception e){
             return ResultUtils.build(100, "fail to list fans", e.getMessage());
         }
-        List<UserResp> nList = new ArrayList<>();
+        List<UserVo> nList = new ArrayList<>();
         for(UserForDao u : list){
             String type = StudyTypeUtils.respMap.get(u.getUserStudyType());
-            UserResp user = new UserResp(u.getUserId(), u.getUserName(), u.getUserProfile(), type);
+            UserVo user = new UserVo(u.getUserId(), u.getUserName(), u.getUserProfile(), type);
             nList.add(user);
         }
         return ResultUtils.build(200, "success to list fans", nList);
@@ -47,10 +47,10 @@ public class FollowerServiceImpl implements FollowService {
         }catch (Exception e){
             return ResultUtils.build(100, "fail to list follow", e.getMessage());
         }
-        List<UserResp> nList = new ArrayList<>();
+        List<UserVo> nList = new ArrayList<>();
         for(UserForDao u : list){
             String type = StudyTypeUtils.respMap.get(u.getUserStudyType());
-            UserResp user = new UserResp(u.getUserId(), u.getUserName(), u.getUserProfile(), type);
+            UserVo user = new UserVo(u.getUserId(), u.getUserName(), u.getUserProfile(), type);
             nList.add(user);
         }
         return ResultUtils.build(200, "success to list follow", nList);
