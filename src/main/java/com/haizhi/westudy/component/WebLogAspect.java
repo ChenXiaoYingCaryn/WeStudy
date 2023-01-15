@@ -2,10 +2,9 @@ package com.haizhi.westudy.component;
 
 
 import cn.hutool.json.JSONUtil;
-import com.haizhi.westudy.pojo.WebLog;
+import com.haizhi.westudy.pojo.vo.WebLog;
 import com.haizhi.westudy.service.LogService;
 import com.haizhi.westudy.utils.StrUtils;
-import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;

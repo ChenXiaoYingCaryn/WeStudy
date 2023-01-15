@@ -2,7 +2,7 @@ package com.haizhi.westudy.service.impl;
 
 
 import com.haizhi.westudy.dao.LogDao;
-import com.haizhi.westudy.pojo.WebLog;
+import com.haizhi.westudy.pojo.vo.WebLog;
 import com.haizhi.westudy.service.LogService;
 import com.haizhi.westudy.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;

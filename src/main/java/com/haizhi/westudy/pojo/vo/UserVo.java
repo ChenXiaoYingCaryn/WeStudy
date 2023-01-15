@@ -1,20 +1,20 @@
-package com.haizhi.westudy.pojo;
+package com.haizhi.westudy.pojo.vo;
 
 /**
  * @author xiaoying
  * @create 2022-06-04 下午 10:00
  */
-public class UserResp {
+public class UserVo {
 
     String userId;
     String userName;
     String userProfile;
     String userStudyType;
 
-    public UserResp() {
+    public UserVo() {
     }
 
-    public UserResp(String userId, String userName, String userProfile, String userStudyType) {
+    public UserVo(String userId, String userName, String userProfile, String userStudyType) {
         this.userId = userId;
         this.userName = userName;
         this.userProfile = userProfile;

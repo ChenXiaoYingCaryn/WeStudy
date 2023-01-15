@@ -1,6 +1,6 @@
 package com.haizhi.westudy.service;
 
-import com.haizhi.westudy.pojo.VideoReq;
+import com.haizhi.westudy.pojo.dto.VideoReq;
 import com.haizhi.westudy.utils.ResultUtils;
 
 /**

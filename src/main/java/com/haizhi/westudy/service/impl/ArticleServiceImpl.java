@@ -1,7 +1,7 @@
 package com.haizhi.westudy.service.impl;
 
 import com.haizhi.westudy.dao.ArticleDao;
-import com.haizhi.westudy.pojo.Article;
+import com.haizhi.westudy.pojo.dto.Article;
 import com.haizhi.westudy.pojo.dao.ArticleForDao;
 import com.haizhi.westudy.service.ArticleService;
 import com.haizhi.westudy.utils.ResultUtils;

@@ -1,18 +1,24 @@
-package com.haizhi.westudy.pojo;
+package com.haizhi.westudy.pojo.dto;
 
+import cn.hutool.core.date.DateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.sql.Timestamp;
+
 /**
  * @author xiaoying
- * @create 2022-06-03 下午 5:04
+ * @create 2022-06-04 上午 10:37
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class VideoResp {
+public class VideoReq {
 
     /**
      * id
@@ -27,12 +33,12 @@ public class VideoResp {
     /**
      * 视频
      */
-    String Video;
+    MultipartFile Video;
 
     /**
      * 视频封面
      */
-    String Img;
+    MultipartFile Img;
 
     /**
      * 视频类型
@@ -53,20 +59,5 @@ public class VideoResp {
      * 视频集数
      */
     String SectionId;
-
-    /**
-     * 是否删除
-     */
-    Integer IsDelete;
-
-    /**
-     * 更新时间
-     */
-    String UpdateTime;
-
-    /**
-     * 创建时间
-     */
-    String CreateTime;
 
 }

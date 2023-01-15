@@ -1,14 +1,12 @@
 package com.haizhi.westudy.controller;
 
-import com.haizhi.westudy.pojo.VideoReq;
+import com.haizhi.westudy.pojo.dto.VideoReq;
 import com.haizhi.westudy.service.VideoService;
 import com.haizhi.westudy.utils.JWTUtils;
 import com.haizhi.westudy.utils.ResultUtils;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLOutput;
 
 /**
  * @author xiaoying

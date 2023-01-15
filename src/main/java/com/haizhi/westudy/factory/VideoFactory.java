@@ -1,7 +1,7 @@
 package com.haizhi.westudy.factory;
 
-import com.haizhi.westudy.pojo.VideoReq;
-import com.haizhi.westudy.pojo.VideoResp;
+import com.haizhi.westudy.pojo.dto.VideoReq;
+import com.haizhi.westudy.pojo.vo.VideoVo;
 import com.haizhi.westudy.utils.ResultUtils;
 
 /**
@@ -10,8 +10,8 @@ import com.haizhi.westudy.utils.ResultUtils;
  */
 public class VideoFactory {
 
-    public static VideoResp VideoRepToVideoResp(VideoReq req, ResultUtils video, ResultUtils img){
-        VideoResp resp = new VideoResp();
+    public static VideoVo VideoRepToVideoResp(VideoReq req, ResultUtils video, ResultUtils img){
+        VideoVo resp = new VideoVo();
         resp.setId(req.getId());
         resp.setTitle(req.getTitle());
         if(video.getData() != null){

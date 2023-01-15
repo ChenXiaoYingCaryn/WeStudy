@@ -1,6 +1,6 @@
 package com.haizhi.westudy.service;
 
-import com.haizhi.westudy.pojo.Article;
+import com.haizhi.westudy.pojo.dto.Article;
 import com.haizhi.westudy.utils.ResultUtils;
 
 /**

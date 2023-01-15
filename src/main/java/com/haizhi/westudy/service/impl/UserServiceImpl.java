@@ -1,8 +1,8 @@
 package com.haizhi.westudy.service.impl;
 
 import com.haizhi.westudy.dao.UserDao;
-import com.haizhi.westudy.pojo.User;
-import com.haizhi.westudy.pojo.UserResp;
+import com.haizhi.westudy.pojo.dto.User;
+import com.haizhi.westudy.pojo.vo.UserVo;
 import com.haizhi.westudy.pojo.dao.UserForDao;
 import com.haizhi.westudy.service.UserService;
 import com.haizhi.westudy.utils.JWTUtils;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public ResultUtils getUSerById(Integer userId) {
         UserForDao user = userDao.getUserById(userId);
         String type = StudyTypeUtils.respMap.get(user.getUserStudyType());
-        UserResp nUser = new UserResp(user.getUserId(), user.getUserName(), user.getUserProfile(), type);
+        UserVo nUser = new UserVo(user.getUserId(), user.getUserName(), user.getUserProfile(), type);
         return ResultUtils.build(200, "get user success", nUser);
     }
 

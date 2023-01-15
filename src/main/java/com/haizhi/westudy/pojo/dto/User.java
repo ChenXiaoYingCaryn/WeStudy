@@ -1,4 +1,4 @@
-package com.haizhi.westudy.pojo;
+package com.haizhi.westudy.pojo.dto;
 
 
 /**

@@ -1,6 +1,6 @@
 package com.haizhi.westudy.controller;
 
-import com.haizhi.westudy.pojo.User;
+import com.haizhi.westudy.pojo.dto.User;
 import com.haizhi.westudy.service.UserService;
 import com.haizhi.westudy.utils.ResultUtils;
 import io.swagger.annotations.Api;

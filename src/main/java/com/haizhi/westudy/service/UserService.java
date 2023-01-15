@@ -1,6 +1,6 @@
 package com.haizhi.westudy.service;
 
-import com.haizhi.westudy.pojo.User;
+import com.haizhi.westudy.pojo.dto.User;
 import com.haizhi.westudy.utils.ResultUtils;
 import org.springframework.web.multipart.MultipartFile;
 

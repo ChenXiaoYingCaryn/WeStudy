@@ -1,6 +1,6 @@
 package com.haizhi.westudy.dao;
 
-import com.haizhi.westudy.pojo.WebLog;
+import com.haizhi.westudy.pojo.vo.WebLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;

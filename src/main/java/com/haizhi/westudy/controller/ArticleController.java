@@ -1,6 +1,6 @@
 package com.haizhi.westudy.controller;
 
-import com.haizhi.westudy.pojo.Article;
+import com.haizhi.westudy.pojo.dto.Article;
 import com.haizhi.westudy.service.ArticleService;
 import com.haizhi.westudy.utils.JWTUtils;
 import com.haizhi.westudy.utils.ResultUtils;

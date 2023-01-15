@@ -3,11 +3,10 @@ package com.haizhi.westudy.service.impl;
 import com.haizhi.westudy.dao.VideoDao;
 import com.haizhi.westudy.enums.UploadEnum;
 import com.haizhi.westudy.factory.VideoFactory;
-import com.haizhi.westudy.pojo.VideoReq;
-import com.haizhi.westudy.pojo.VideoResp;
+import com.haizhi.westudy.pojo.dto.VideoReq;
+import com.haizhi.westudy.pojo.vo.VideoVo;
 import com.haizhi.westudy.service.VideoService;
 import com.haizhi.westudy.utils.ResultUtils;
-import com.haizhi.westudy.utils.StudyTypeUtils;
 import com.haizhi.westudy.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +40,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils queryVideoByUserId(Integer userId) {
-        List<VideoResp> list;
+        List<VideoVo> list;
         try {
             list = videoDao.queryVideoByUserId(userId);
         }catch (Exception e){
@@ -52,7 +51,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils queryVideoByType(Integer type) {
-        List<VideoResp> list;
+        List<VideoVo> list;
         try {
             list = videoDao.queryVideoByType(type);
         }catch (Exception e){
@@ -63,7 +62,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils queryVideo() {
-        List<VideoResp> list;
+        List<VideoVo> list;
         try {
             list = videoDao.queryVideo();
         }catch (Exception e){
@@ -84,7 +83,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public ResultUtils getVideoByVideoId(Integer id) {
-        VideoResp video;
+        VideoVo video;
         try{
             video = videoDao.getVideoByVideoId(id);
         }catch (Exception e){
@@ -118,7 +117,7 @@ public class VideoServiceImpl implements VideoService {
         }
 
 
-        VideoResp nVideo = VideoFactory.VideoRepToVideoResp(req, video, img);
+        VideoVo nVideo = VideoFactory.VideoRepToVideoResp(req, video, img);
         try{
             videoDao.updateVideo(nVideo);
         }catch (Exception e){
@@ -138,7 +137,7 @@ public class VideoServiceImpl implements VideoService {
         ResultUtils videoUrl = UploadUtils.uploadFile(req.getVideo(), UploadEnum.video);
         ResultUtils imgUrl = UploadUtils.uploadFile(req.getImg(), UploadEnum.image);
 
-        VideoResp nVideo = videoFactory.VideoRepToVideoResp(req, videoUrl, imgUrl);
+        VideoVo nVideo = videoFactory.VideoRepToVideoResp(req, videoUrl, imgUrl);
         try{
             videoDao.postVideo(nVideo);
         }catch (Exception e){
